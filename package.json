@@ -1,0 +1,19 @@
+{
+  "name": "josh_top_reviews",
+  "version": "1.0.0",
+  "description": "rpt15-fec-tabata-yoga steam-clone top reviews",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpt15-fec-tabata-yoga/Josh_Top_Reviews.git"
+  },
+  "author": "joshherz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpt15-fec-tabata-yoga/Josh_Top_Reviews/issues"
+  },
+  "homepage": "https://github.com/rpt15-fec-tabata-yoga/Josh_Top_Reviews#readme"
+}
