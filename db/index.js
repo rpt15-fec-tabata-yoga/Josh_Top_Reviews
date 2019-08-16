@@ -1,23 +1,34 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reviews', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/aboutGame', { useNewUrlParser: true });
 
-const Review = mongoose.model('reviews', {
-  author: String,
-  body: String,
-  helpful: Number,
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', () => {console.log('connected to mongoDB');});
+
+
+const AboutGameSchema = new mongoose.Schema({
+  updateDate: String,
+  //Note4Later: hardcode version and System Req
+  updateBody: String,
+  updateComments: Number,
+  aboutBody: String,
+  features: String
 });
 
-let findTop3 = (callback) => {
-  Repo.find({}, null, { limit: 3, sort: { helpful: -1 } }, function (err, data) {
-    if (err) {
-      callback(err);
-    } else {
-      callback(null, data);
-    }
-  });
-}
+const AboutGame = mongoose.model('AboutGame', AboutGameSchema);
+
+
+// let findTopThreeReviews = (callback) => {
+//   AboutGame.find({}, null, { limit: 3, sort: { helpful: -1 } }, function (err, data) {
+//     if (err) {
+//       callback(err);
+//     } else {
+//       callback(null, data);
+//     }
+//   });
+// }
 
 module.exports = {
-  Review,
-  findTop3
+  AboutGame
+  // findTopThreeReviews
 };

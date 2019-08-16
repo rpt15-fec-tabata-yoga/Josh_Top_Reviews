@@ -1,25 +1,26 @@
-const Review = require('./index.js');
+const AboutGame = require('./index.js');
 const faker = require('faker');
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/aboutGame', { useNewUrlParser: true });
 
-const seedDataMaker = (reviewCount) => {
-  var reviewsArray = [];
-  for (var i = 0; i < reviewCount; ++i) {
-    var newReview = {};
-    newReview.author = faker.internet.userName();
-    newReview.body = faker.lorem.paragraph();
-    newReview.helpful = faker.random.number();
-    reviewsArray.push(newReview);
+console.log(AboutGame);
+
+const seedDataMaker = (count) => {
+  var array = [];
+  for (var i = 0; i < count; ++i) {
+    var newGameData = {};
+    newGameData.updateDate = faker.date.past();
+    newGameData.updateBody = faker.lorem.paragraph();
+    newGameData.updateComments = faker.random.number();
+    newGameData.aboutBody = faker.lorem.paragraph();
+    newGameData.features = faker.lorem.paragraphs();
+    array.push(newGameData);
   }
 
-  if (reviewsArray.length >= reviewCount) {
-    Review.collection.insertMany(reviewsArray, (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(`Seeded ${reviewCount} reviews`);
-      }
-    });
+  if (array.length >= count) {
+    let newDoc = new AboutGame(array);
+    newDoc.save();
   }
 }
-//makes 25 example data reviews
-seedDataMaker(25);
+//makes 100 example data reviews
+seedDataMaker(100);
